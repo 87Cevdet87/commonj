@@ -4,8 +4,9 @@
 </h:head>
 <h:body>
 	<p:messages></p:messages>
-
+	
 	<h:form id="formTable">
+
 		<p:dataTable id="studentTableDT" var="student" value="#{studentRegisterBean.students}" widgetVar="addressWidget" multiViewState="true" rows="10" paginator="true"
 			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
                  {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15"
@@ -62,7 +63,7 @@
 				<h:panelGrid columns="4">
 					<h:panelGroup />
 					<p:commandButton process="@this" action="#{studentRegisterBean.createNewStudent}" update=":studenForm:newStudentRegisterPanel" icon="ui-icon-contact" value="Registration"
-						oncomplete="PF('newStudentDialog').show()" />
+						oncomplete="PF('newStudentDialog').show();" />
 					<h:panelGroup />
 					<p:fileUpload value="Upload" fileUploadListener="#{studentRegisterBean.handleFileUpload}" mode="advanced" update=":formTable:studentTableDT" auto="true" sizeLimit="100000"
 						allowTypes="/(\.|\/)(csv)$/" />
@@ -87,8 +88,9 @@
 	</h:form>
 	<h:form id="studenForm">
 		<p:dialog header="New Student Info" widgetVar="newStudentDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+			<p:ajax event="close" oncomplete="PF('wiz').loadStep(PF('wiz').cfg.steps [0], true)"/>
 			<p:outputPanel id="newStudentRegisterPanel" style="text-align:center;">
-				<p:wizard flowListener="#{studentRegisterBean.onFlowProcess}">
+				<p:wizard flowListener="#{studentRegisterBean.onFlowProcess}" widgetVar="wiz">
 					<p:tab id="studentTab" title="Student">
 						<p:panel header="Student Details">
 							<p:messages />
