@@ -18,13 +18,11 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.primefaces.context.RequestContext;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.FlowEvent;
 import org.primefaces.model.UploadedFile;
 
 import com.opencsv.CSVReader;
-import com.sun.xml.internal.ws.client.RequestContext;
 
 import tr.com.sample.registration.constants.ViewMode;
 import tr.com.sample.registration.model.City;
