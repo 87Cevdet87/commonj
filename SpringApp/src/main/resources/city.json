@@ -1,0 +1,98 @@
+[   
+    {
+         "cityNo": "35",
+         "cityName": "İzmir",
+         "districts":
+		 [
+			 {
+				 "districtNo": "35001",
+				 "districtName": "Konak",
+			 },
+			 {
+				 "districtNo": "35002",
+				 "districtName": "Narlıdere",
+			 },
+			 {
+				 "districtNo": "35003",
+				 "districtName": "Balçova",
+			 },
+			 {
+				 "districtNo": "35004",
+				 "districtName": "Karşıyaka",
+			 },
+		 ]
+     },
+     {
+         "cityNo": "34",
+         "cityName": "İstanbul",
+         "districts":
+          "districts":
+		 [
+			 {
+				 "districtNo": "34001",
+				 "districtName": "Kadıköy",
+			 },
+			 {
+				 "districtNo": "34002",
+				 "districtName": "Beşiktaş",
+			 },
+			 {
+				 "districtNo": "34003",
+				 "districtName": "Maltepe",
+			 },
+			 {
+				 "districtNo": "34004",
+				 "districtName": "Pendik",
+			 },
+		 ]
+     },
+	 {
+         "cityNo": "06",
+         "cityName": "Ankara",
+         "districts":
+         [
+			 {
+				 "districtNo": "6001",
+				 "districtName": "Mamak",
+			 },
+			 {
+				 "districtNo": "6002",
+				 "districtName": "Çankaya",
+			 },
+			 {
+				 "districtNo": "6003",
+				 "districtName": "Dikmen",
+			 },
+			 {
+				 "districtNo": "6004",
+				 "districtName": "Batıkent",
+			 },
+		 ]
+     },
+	 {
+         "cityNo": "48",
+         "cityName": "Muğla",
+         "districts":
+         [
+			 {
+				 "districtNo": "48001",
+				 "districtName": "Merkez",
+			 }
+		 ]
+     },
+	 {
+         "cityNo": "16",
+         "cityName": "Bursa",
+         "districts":
+          [
+			 {
+				 "districtNo": "16001",
+				 "districtName": "Gemlik",
+			 },
+			  {
+				 "districtNo": "16002",
+				 "districtName": "Osmangazi",
+			 }
+		 ]
+     }
+]
