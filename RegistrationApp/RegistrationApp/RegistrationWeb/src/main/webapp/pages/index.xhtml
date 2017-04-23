@@ -1,4 +1,7 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>Welcome to Student Registration</title>
 </h:head>
@@ -6,54 +9,71 @@
 	<p:messages></p:messages>
 	
 	<h:form id="formTable">
-
-		<p:dataTable id="studentTableDT" var="student" value="#{studentRegisterBean.students}" widgetVar="addressWidget" multiViewState="true" rows="10" paginator="true"
+		<p:dataTable id="studentTableDT" var="student"
+			value="#{studentRegisterBean.students}" widgetVar="addressWidget"
+			multiViewState="true" rows="10" paginator="true"
 			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
-                 {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,15"
-			selectionMode="single" selection="#{studentRegisterBean.selectedStudent}" rowKey="#{student.studentNo}" emptyMessage="No students found with given criteria"
+                 {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			rowsPerPageTemplate="5,10,15" selectionMode="single"
+			selection="#{studentRegisterBean.selectedStudent}"
+			rowKey="#{student.studentNo}"
+			emptyMessage="No students found with given criteria"
 			filteredValue="#{studentRegisterBean.filteredStudents}">
 
 			<f:facet name="header">
 				<p:outputPanel>
 					<h:outputText value="Search all fields:" />
-					<p:inputText id="globalFilter" onkeyup="PF('addressWidget').filter()" style="width:150px" placeholder="Enter keyword" />
+					<p:inputText id="globalFilter"
+						onkeyup="PF('addressWidget').filter()" style="width:150px"
+						placeholder="Enter keyword" />
 				</p:outputPanel>
 			</f:facet>
 
 
-			<p:column headerText="Student No" filterBy="#{student.studentNo}" sortBy="#{student.studentNo}" filterMatchMode="contains">
+			<p:column headerText="Student No" filterBy="#{student.studentNo}"
+				sortBy="#{student.studentNo}" filterMatchMode="contains">
 				<h:outputText value="#{student.studentNo}" />
 			</p:column>
 
-			<p:column headerText="First Name" filterBy="#{student.firstName}" sortBy="#{student.firstName}" filterMatchMode="startsWith">
+			<p:column headerText="First Name" filterBy="#{student.firstName}"
+				sortBy="#{student.firstName}" filterMatchMode="startsWith">
 				<h:outputText value="#{student.firstName}" />
 			</p:column>
 
-			<p:column headerText="Last Name" filterBy="#{student.surName}" sortBy="#{student.surName}" filterMatchMode="contains">
+			<p:column headerText="Last Name" filterBy="#{student.surName}"
+				sortBy="#{student.surName}" filterMatchMode="contains">
 
 				<h:outputText value="#{student.surName}" />
 			</p:column>
 
-			<p:column headerText="Mobile Phone" filterBy="#{student.phoneNumber}" sortBy="#{student.phoneNumber}" filterMatchMode="startsWith">
+			<p:column headerText="Mobile Phone" filterBy="#{student.phoneNumber}"
+				sortBy="#{student.phoneNumber}" filterMatchMode="startsWith">
 
 				<h:outputText value="#{student.phoneNumber}" />
 			</p:column>
 
 
 			<p:column style="width:32px;text-align: center" headerText="Remove">
-				<p:commandButton update=":formTable:studentTableDT" icon="ui-icon-trash" action="#{studentRegisterBean.removeStudent(student.studentNo)}" title="View">
+				<p:commandButton update=":formTable:studentTableDT"
+					icon="ui-icon-trash"
+					action="#{studentRegisterBean.removeStudent(student.studentNo)}"
+					title="View">
 				</p:commandButton>
 			</p:column>
 
 
 			<p:column style="width:32px;text-align: center" headerText="Update">
-				<p:commandButton update=":studenForm:newStudentRegisterPanel" action="#{studentRegisterBean.updateStudent(student.studentNo)}" icon="ui-icon-pencil" oncomplete="PF('newStudentDialog').show()"
+				<p:commandButton update=":studenForm:newStudentRegisterPanel"
+					action="#{studentRegisterBean.updateStudent(student.studentNo)}"
+					icon="ui-icon-pencil" oncomplete="PF('newStudentDialog').show()"
 					title="Update">
 				</p:commandButton>
 			</p:column>
 
 			<p:column style="width:32px;text-align: center" headerText="View">
-				<p:commandButton update=":studentInfoForm:studentDetail" oncomplete="PF('studentDialog').show()" icon="ui-icon-extlink" title="View"
+				<p:commandButton update=":studentInfoForm:studentDetail"
+					oncomplete="PF('studentDialog').show()" icon="ui-icon-extlink"
+					title="View"
 					action="#{studentRegisterBean.showStudentAddressList(student.studentNo)}">
 				</p:commandButton>
 			</p:column>
@@ -62,11 +82,17 @@
 
 				<h:panelGrid columns="4">
 					<h:panelGroup />
-					<p:commandButton process="@this" action="#{studentRegisterBean.createNewStudent}" update=":studenForm:newStudentRegisterPanel" icon="ui-icon-contact" value="Registration"
-						oncomplete="PF('newStudentDialog').show();" />
+
+					<p:commandButton process="@this"
+						action="#{studentRegisterBean.createNewStudent}"
+						update=":studenForm:newStudentRegisterPanel"
+						icon="ui-icon-contact" value="Registration"
+						oncomplete="PF('newStudentDialog').show()" />
 					<h:panelGroup />
-					<p:fileUpload value="Upload" fileUploadListener="#{studentRegisterBean.handleFileUpload}" mode="advanced" update=":formTable:studentTableDT" auto="true" sizeLimit="100000"
-						allowTypes="/(\.|\/)(csv)$/" />
+					<p:fileUpload value="Upload"
+						fileUploadListener="#{studentRegisterBean.handleFileUpload}"
+						mode="advanced" update=":formTable:studentTableDT" auto="true"
+						sizeLimit="100000" allowTypes="/(\.|\/)(csv)$/" />
 					<p:growl id="messages" showDetail="true" />
 
 				</h:panelGrid>
@@ -75,22 +101,30 @@
 		</p:dataTable>
 	</h:form>
 	<h:form id="studentInfoForm">
-		<p:dialog header="Student Address Info" widgetVar="studentDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+		<p:dialog header="Student Address Info" widgetVar="studentDialog"
+			modal="true" showEffect="fade" hideEffect="fade" resizable="false">
 			<p:outputPanel id="studentDetail" style="text-align:center;">
-				<p:dataList value="#{studentRegisterBean.studentAddressList}" var="address" type="unordered" itemType="none">
+				<p:dataList value="#{studentRegisterBean.studentAddressList}"
+					var="address" type="unordered" itemType="none">
 					<f:facet name="header">
             Student Address List of #{selectedStudent.getFullName()}
         		</f:facet>
-					<h:outputText value="#{address.description}, #{address.district}, #{address.city}" style="display:inline-block" />
+					<h:outputText
+						value="#{address.description}, #{address.district}, #{address.city}"
+						style="display:inline-block" />
 				</p:dataList>
 			</p:outputPanel>
 		</p:dialog>
 	</h:form>
 	<h:form id="studenForm">
-		<p:dialog header="New Student Info" widgetVar="newStudentDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+
+		<p:dialog header="New Student Info" widgetVar="newStudentDialog"
+			modal="true" showEffect="fade" hideEffect="fade" resizable="false">
 			<p:ajax event="close" oncomplete="PF('wiz').loadStep(PF('wiz').cfg.steps [0], true)"/>
-			<p:outputPanel id="newStudentRegisterPanel" style="text-align:center;">
-				<p:wizard flowListener="#{studentRegisterBean.onFlowProcess}" widgetVar="wiz">
+			<p:outputPanel id="newStudentRegisterPanel"
+				style="text-align:center;">
+				<p:wizard flowListener="#{studentRegisterBean.onFlowProcess}"
+					widgetVar="wiz">
 					<p:tab id="studentTab" title="Student">
 						<p:panel header="Student Details">
 							<p:messages />
@@ -100,13 +134,20 @@
 				                </f:facet>
 
 								<p:outputLabel for="firstName" value="First Name : " />
-								<p:inputText id="firstName" required="true" requiredMessage="Please Enter First Name" value="#{studentRegisterBean.selectedStudent.firstName}" />
+								<p:inputText id="firstName" required="true"
+									requiredMessage="Please Enter First Name"
+									value="#{studentRegisterBean.selectedStudent.firstName}" />
 
 								<p:outputLabel for="surName" value="Last Name :" />
-								<p:inputText id="surName" required="true" requiredMessage="Please Enter Last Name" value="#{studentRegisterBean.selectedStudent.surName}" />
+								<p:inputText id="surName" required="true"
+									requiredMessage="Please Enter Last Name"
+									value="#{studentRegisterBean.selectedStudent.surName}" />
 
 								<p:outputLabel for="phone" value="Phone:" />
-								<p:inputMask id="phone" required="true" requiredMessage="Please Enter Mobile Phone" value="#{studentRegisterBean.selectedStudent.phoneNumber}" mask="(999) 999-9999" />
+								<p:inputMask id="phone" required="true"
+									requiredMessage="Please Enter Mobile Phone"
+									value="#{studentRegisterBean.selectedStudent.phoneNumber}"
+									mask="(999) 999-9999" />
 
 
 							</p:panelGrid>
@@ -118,20 +159,33 @@
 							<p:messages />
 							<h:panelGrid columns="2" columnClasses="label, value">
 								<h:outputText value="City :" />
-								<p:selectOneMenu id="city" required="true" requiredMessage="Please Select City" value="#{studentRegisterBean.selectedStudentAddress.city}" effect="fold">
-									<p:ajax listener="#{studentRegisterBean.onCityChange}" update="district" />
+								<p:selectOneMenu id="city" required="true"
+									requiredMessage="Please Select City"
+									value="#{studentRegisterBean.selectedStudentAddress.city}"
+									effect="fold">
+									<p:ajax listener="#{studentRegisterBean.onCityChange}"
+										update="district" />
 									<f:selectItem itemLabel="Select A City " itemValue="" />
-									<f:selectItems value="#{studentRegisterBean.cities}" var="city" itemLabel="#{city.cityName}" itemValue="#{city.cityNo}" />
+									<f:selectItems value="#{studentRegisterBean.cities}" var="city"
+										itemLabel="#{city.cityName}" itemValue="#{city.cityNo}" />
 								</p:selectOneMenu>
 
 								<h:outputText value="District :" />
-								<p:selectOneMenu id="district" required="true" requiredMessage="Please Select District" value="#{studentRegisterBean.selectedStudentAddress.district}" effect="fold">
+								<p:selectOneMenu id="district" required="true"
+									requiredMessage="Please Select District"
+									value="#{studentRegisterBean.selectedStudentAddress.district}"
+									effect="fold">
 									<f:selectItem itemLabel="Select A District " itemValue="" />
-									<f:selectItems value="#{studentRegisterBean.districts}" var="district" itemLabel="#{district.districtName}" itemValue="#{district.districtNo}" />
+									<f:selectItems value="#{studentRegisterBean.districts}"
+										var="district" itemLabel="#{district.districtName}"
+										itemValue="#{district.districtNo}" />
 								</p:selectOneMenu>
 
 								<h:outputText value="Description :" />
-								<p:inputTextarea rows="5" cols="30" counter="display" maxlength="30" counterTemplate="{0} characters remaining." autoResize="false" required="true" requiredMessage="Please Enter Desc"
+								<p:inputTextarea rows="5" cols="30" counter="display"
+									maxlength="30" counterTemplate="{0} characters remaining."
+									autoResize="false" required="true"
+									requiredMessage="Please Enter Desc"
 									value="#{studentRegisterBean.selectedStudentAddress.description}" />
 								<h:outputText id="display" />
 							</h:panelGrid>
@@ -141,33 +195,49 @@
 
 					<p:tab id="confirm" title="Confirmation">
 						<p:panel header="Confirmation">
-							<h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
+							<h:panelGrid id="confirmation" columns="3"
+								columnClasses="grid,grid,grid">
 								<h:panelGrid columns="2" columnClasses="label, value">
 									<h:outputText value="Firstname: " />
-									<h:outputText value="#{studentRegisterBean.selectedStudent.firstName}" styleClass="outputLabel" />
+									<h:outputText
+										value="#{studentRegisterBean.selectedStudent.firstName}"
+										styleClass="outputLabel" />
 
 									<h:outputText value="Lastname: " />
-									<h:outputText value="#{studentRegisterBean.selectedStudent.surName}" styleClass="outputLabel" />
+									<h:outputText
+										value="#{studentRegisterBean.selectedStudent.surName}"
+										styleClass="outputLabel" />
 
 									<h:outputText value="Mobile Phone: " />
-									<h:outputText value="#{studentRegisterBean.selectedStudent.phoneNumber}" styleClass="outputLabel" />
+									<h:outputText
+										value="#{studentRegisterBean.selectedStudent.phoneNumber}"
+										styleClass="outputLabel" />
 								</h:panelGrid>
 
 								<h:panelGrid columns="2" columnClasses="label, value">
 
 									<h:outputText value="City : " />
-									<h:outputText value="#{studentRegisterBean.selectedStudentAddress.city}" styleClass="outputLabel" />
+									<h:outputText
+										value="#{studentRegisterBean.selectedStudentAddress.city}"
+										styleClass="outputLabel" />
 
 									<h:outputText value="District : " />
-									<h:outputText value="#{studentRegisterBean.selectedStudentAddress.district}" styleClass="outputLabel" />
+									<h:outputText
+										value="#{studentRegisterBean.selectedStudentAddress.district}"
+										styleClass="outputLabel" />
 
 									<h:outputText value="Desc : " />
-									<h:outputText value="#{studentRegisterBean.selectedStudentAddress.description}" styleClass="outputLabel" />
+									<h:outputText
+										value="#{studentRegisterBean.selectedStudentAddress.description}"
+										styleClass="outputLabel" />
 
 								</h:panelGrid>
 							</h:panelGrid>
 
-							<p:commandButton value="Complete" process="@this" update=":formTable:studentTableDT" action="#{studentRegisterBean.createNewStudentAction()}" styleClass="ui-priority-primary"
+							<p:commandButton value="Complete" process="@this"
+								update=":formTable:studentTableDT"
+								action="#{studentRegisterBean.createNewStudentAction()}"
+								styleClass="ui-priority-primary"
 								oncomplete="PF('newStudentDialog').hide()" />
 						</p:panel>
 					</p:tab>
