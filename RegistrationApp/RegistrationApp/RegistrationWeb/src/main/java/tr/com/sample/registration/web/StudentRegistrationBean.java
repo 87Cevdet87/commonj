@@ -23,6 +23,7 @@ import org.primefaces.event.FlowEvent;
 import org.primefaces.model.UploadedFile;
 
 import com.opencsv.CSVReader;
+import com.sun.xml.internal.ws.client.RequestContext;
 
 import tr.com.sample.registration.constants.ViewMode;
 import tr.com.sample.registration.model.City;
@@ -90,7 +91,8 @@ public class StudentRegistrationBean implements Serializable {
 	}
 
 	public void updateStudent(Integer studentNo) {
-
+		org.primefaces.context.RequestContext context = org.primefaces.context.RequestContext.getCurrentInstance();
+		context.reset("studenForm");
 		selectedStudent = studentRegistrationService.getRegistrationInfo(studentNo);
 
 		viewMode = ViewMode.UPDATE;
